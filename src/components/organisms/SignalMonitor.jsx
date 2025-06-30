@@ -94,29 +94,59 @@ useEffect(() => {
             </tr>
           </thead>
 <tbody className="divide-y divide-surface-600">
-            {signals.map((signal) => {
-              if (!signal || !signal.Id) return null;
+{signals.map((signal) => {
+              // Comprehensive null checking for signal object
+              if (!signal || typeof signal !== 'object' || !signal.Id) return null;
               
-              // Safe date formatting
+              // Safe date formatting with enhanced error handling
               const formatTimestamp = () => {
                 try {
+                  if (!signal.timestamp) return '--:--:--';
                   const date = new Date(signal.timestamp);
                   return isNaN(date.getTime()) ? '--:--:--' : date.toLocaleTimeString();
-                } catch {
+                } catch (error) {
+                  console.warn('Timestamp formatting error:', error);
                   return '--:--:--';
                 }
               };
 
-              // Safe action formatting
-              const action = signal.action ? String(signal.action) : '';
+              // Safe action formatting with null protection
+              const action = signal.action ? String(signal.action).trim() : '';
               const actionLower = action.toLowerCase();
               const isBuy = actionLower === 'buy';
 
-              // Safe number formatting
+              // Enhanced number formatting with validation
               const formatPrice = (value) => {
-                const num = Number(value);
-                return !isNaN(num) ? num.toFixed(5) : '0.00000';
+                try {
+                  if (value === null || value === undefined || value === '') return '0.00000';
+                  const num = Number(value);
+                  return !isNaN(num) && isFinite(num) ? num.toFixed(5) : '0.00000';
+                } catch (error) {
+                  console.warn('Price formatting error:', error);
+                  return '0.00000';
+                }
               };
+
+              // Safe lot size formatting
+              const formatLotSize = (value) => {
+                try {
+                  if (value === null || value === undefined || value === '') return '0.00';
+                  const num = Number(value);
+                  return !isNaN(num) && isFinite(num) ? num.toFixed(2) : '0.00';
+                } catch (error) {
+                  console.warn('Lot size formatting error:', error);
+                  return '0.00';
+                }
+              };
+
+              // Safe symbol extraction
+              const symbol = signal.symbol ? String(signal.symbol).trim() : 'N/A';
+
+              // Safe account number extraction
+              const accountNumber = signal.account_number ? String(signal.account_number).trim() : 'N/A';
+
+              // Safe status extraction
+              const status = signal.status ? String(signal.status).trim() : 'unknown';
 
               return (
                 <motion.tr
@@ -129,7 +159,7 @@ useEffect(() => {
                     {formatTimestamp()}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="text-sm font-medium text-white">{signal.symbol || 'N/A'}</span>
+                    <span className="text-sm font-medium text-white">{symbol}</span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
@@ -154,13 +184,13 @@ useEffect(() => {
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-white font-mono">
-                    {signal.lot_size || '0.00'}
+                    {formatLotSize(signal.lot_size)}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <StatusBadge status={signal.status || 'unknown'} />
+                    <StatusBadge status={status} />
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300 font-mono">
-                    {signal.account_number || 'N/A'}
+                    {accountNumber}
                   </td>
                 </motion.tr>
               );
