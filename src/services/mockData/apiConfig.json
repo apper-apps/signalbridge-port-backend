@@ -1,0 +1,16 @@
+{
+  "configData": {
+    "endpoint": "https://api.signalbridge.com/v1/signals",
+    "authMethod": "api-key",
+    "webhookUrl": "https://your-domain.com/webhook/signals",
+    "isActive": true,
+    "mt5Parameters": {
+      "serverAddress": "broker-server.com:443",
+      "login": "12345678",
+      "password": "encrypted_password",
+      "maxLotSize": 1.0,
+      "allowedSymbols": "EURUSD, GBPUSD, USDJPY, AUDUSD, USDCAD",
+      "riskLevel": "medium"
+    }
+  }
+}

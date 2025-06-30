@@ -1,0 +1,124 @@
+{
+  "signalData": [
+    {
+      "Id": 1,
+      "timestamp": "2024-01-15T14:30:00Z",
+      "symbol": "EURUSD",
+      "action": "BUY",
+      "price": 1.08945,
+      "stopLoss": 1.08800,
+      "takeProfit": 1.09200,
+      "lotSize": 0.1,
+      "accountNumber": "12345678",
+      "status": "executed"
+    },
+    {
+      "Id": 2,
+      "timestamp": "2024-01-15T13:45:00Z",
+      "symbol": "GBPUSD",
+      "action": "SELL",
+      "price": 1.27234,
+      "stopLoss": 1.27380,
+      "takeProfit": 1.26980,
+      "lotSize": 0.15,
+      "accountNumber": "87654321",
+      "status": "executed"
+    },
+    {
+      "Id": 3,
+      "timestamp": "2024-01-15T12:20:00Z",
+      "symbol": "USDJPY",
+      "action": "BUY",
+      "price": 148.752,
+      "stopLoss": 148.500,
+      "takeProfit": 149.200,
+      "lotSize": 0.08,
+      "accountNumber": "11223344",
+      "status": "pending"
+    },
+    {
+      "Id": 4,
+      "timestamp": "2024-01-15T11:10:00Z",
+      "symbol": "AUDUSD",
+      "action": "SELL",
+      "price": 0.67845,
+      "stopLoss": 0.67980,
+      "takeProfit": 0.67620,
+      "lotSize": 0.12,
+      "accountNumber": "55667788",
+      "status": "executed"
+    },
+    {
+      "Id": 5,
+      "timestamp": "2024-01-15T10:30:00Z",
+      "symbol": "USDCAD",
+      "action": "BUY",
+      "price": 1.34567,
+      "stopLoss": 1.34200,
+      "takeProfit": 1.35000,
+      "lotSize": 0.1,
+      "accountNumber": "99887766",
+      "status": "failed"
+    },
+    {
+      "Id": 6,
+      "timestamp": "2024-01-15T09:45:00Z",
+      "symbol": "EURJPY",
+      "action": "SELL",
+      "price": 161.234,
+      "stopLoss": 161.800,
+      "takeProfit": 160.500,
+      "lotSize": 0.06,
+      "accountNumber": "12345678",
+      "status": "executed"
+    },
+    {
+      "Id": 7,
+      "timestamp": "2024-01-15T08:20:00Z",
+      "symbol": "EURGBP",
+      "action": "BUY",
+      "price": 0.85678,
+      "stopLoss": 0.85400,
+      "takeProfit": 0.86000,
+      "lotSize": 0.09,
+      "accountNumber": "44556677",
+      "status": "executed"
+    },
+    {
+      "Id": 8,
+      "timestamp": "2024-01-15T07:15:00Z",
+      "symbol": "NZDUSD",
+      "action": "SELL",
+      "price": 0.62345,
+      "stopLoss": 0.62500,
+      "takeProfit": 0.62100,
+      "lotSize": 0.14,
+      "accountNumber": "33445566",
+      "status": "pending"
+    },
+    {
+      "Id": 9,
+      "timestamp": "2024-01-15T06:30:00Z",
+      "symbol": "USDCHF",
+      "action": "BUY",
+      "price": 0.88912,
+      "stopLoss": 0.88650,
+      "takeProfit": 0.89250,
+      "lotSize": 0.11,
+      "accountNumber": "77889900",
+      "status": "executed"
+    },
+    {
+      "Id": 10,
+      "timestamp": "2024-01-15T05:45:00Z",
+      "symbol": "CADCHF",
+      "action": "SELL",
+      "price": 0.66123,
+      "stopLoss": 0.66300,
+      "takeProfit": 0.65900,
+      "lotSize": 0.07,
+      "accountNumber": "22334455",
+      "status": "executed"
+    }
+  ]
+}

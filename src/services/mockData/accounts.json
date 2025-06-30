@@ -1,0 +1,85 @@
+{
+  "accountData": [
+    {
+      "Id": 1,
+      "accountNumber": "12345678",
+      "apiKey": "sb_k9j8h7g6f5d4s3a2q1w0e9r8t7y6u5i4o3p2",
+      "subscriptionStatus": "active",
+      "expiryDate": "2024-06-15T00:00:00Z",
+      "signalsReceived": 1245,
+      "lastActive": "2024-01-15T14:30:00Z"
+    },
+    {
+      "Id": 2,
+      "accountNumber": "87654321",
+      "apiKey": "sb_a1s2d3f4g5h6j7k8l9z0x1c2v3b4n5m6q7w8",
+      "subscriptionStatus": "active",
+      "expiryDate": "2024-05-20T00:00:00Z",
+      "signalsReceived": 987,
+      "lastActive": "2024-01-15T13:45:00Z"
+    },
+    {
+      "Id": 3,
+      "accountNumber": "11223344",
+      "apiKey": "sb_q2w3e4r5t6y7u8i9o0p1a2s3d4f5g6h7j8k9",
+      "subscriptionStatus": "active",
+      "expiryDate": "2024-07-10T00:00:00Z",
+      "signalsReceived": 756,
+      "lastActive": "2024-01-15T12:20:00Z"
+    },
+    {
+      "Id": 4,
+      "accountNumber": "55667788",
+      "apiKey": "sb_z9x8c7v6b5n4m3l2k1j0h9g8f7d6s5a4q3w2",
+      "subscriptionStatus": "expired",
+      "expiryDate": "2024-01-10T00:00:00Z",
+      "signalsReceived": 432,
+      "lastActive": "2024-01-10T16:22:00Z"
+    },
+    {
+      "Id": 5,
+      "accountNumber": "99887766",
+      "apiKey": "sb_p0o9i8u7y6t5r4e3w2q1a0s9d8f7g6h5j4k3",
+      "subscriptionStatus": "active",
+      "expiryDate": "2024-04-30T00:00:00Z",
+      "signalsReceived": 1089,
+      "lastActive": "2024-01-15T10:30:00Z"
+    },
+    {
+      "Id": 6,
+      "accountNumber": "44556677",
+      "apiKey": "sb_l3k4j5h6g7f8d9s0a1q2w3e4r5t6y7u8i9o0",
+      "subscriptionStatus": "active",
+      "expiryDate": "2024-08-15T00:00:00Z",
+      "signalsReceived": 623,
+      "lastActive": "2024-01-15T08:20:00Z"
+    },
+    {
+      "Id": 7,
+      "accountNumber": "33445566",
+      "apiKey": "sb_m6n7b8v9c0x1z2a3s4d5f6g7h8j9k0l1q2w3",
+      "subscriptionStatus": "inactive",
+      "expiryDate": "2024-03-25T00:00:00Z",
+      "signalsReceived": 234,
+      "lastActive": "2024-01-12T09:15:00Z"
+    },
+    {
+      "Id": 8,
+      "accountNumber": "77889900",
+      "apiKey": "sb_e4r5t6y7u8i9o0p1q2w3a4s5d6f7g8h9j0k1",
+      "subscriptionStatus": "active",
+      "expiryDate": "2024-09-30T00:00:00Z",
+      "signalsReceived": 1456,
+      "lastActive": "2024-01-15T06:30:00Z"
+    },
+    {
+      "Id": 9,
+      "accountNumber": "22334455",
+      "apiKey": "sb_l2k3j4h5g6f7d8s9a0q1w2e3r4t5y6u7i8o9",
+      "subscriptionStatus": "active",
+      "expiryDate": "2024-12-31T00:00:00Z",
+      "signalsReceived": 845,
+      "lastActive": "2024-01-15T05:45:00Z"
+    }
+  ]
+}
