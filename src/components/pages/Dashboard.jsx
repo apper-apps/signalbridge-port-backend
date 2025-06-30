@@ -1,9 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import StatCard from '@/components/molecules/StatCard';
 import SignalMonitor from '@/components/organisms/SignalMonitor';
+import Loading from '@/components/ui/Loading';
+import Error from '@/components/ui/Error';
 
 const Dashboard = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Initialize dashboard data
+  useEffect(() => {
+    const initializeDashboard = async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
+        
+        // Small delay to ensure all components are ready
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
+        setIsLoading(false);
+      } catch (err) {
+        console.error('Dashboard initialization error:', err);
+        setError('Failed to load dashboard');
+        setIsLoading(false);
+      }
+    };
+
+    initializeDashboard();
+  }, []);
+
   const stats = [
     {
       title: 'Active Signals',
@@ -37,7 +63,20 @@ const Dashboard = () => {
       icon: 'BarChart3',
       trend: false
     }
-  ];
+];
+
+  if (isLoading) {
+    return <Loading type="page" />;
+  }
+
+  if (error) {
+    return (
+      <Error 
+        message={error} 
+        onRetry={() => window.location.reload()} 
+      />
+    );
+  }
 
   return (
     <motion.div
@@ -85,13 +124,15 @@ const Dashboard = () => {
         ))}
       </motion.div>
 
-      {/* Signal Monitor */}
+{/* Signal Monitor */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.5 }}
       >
-        <SignalMonitor />
+        <div className="bg-surface-500 rounded-lg border border-surface-600 overflow-hidden">
+          <SignalMonitor />
+        </div>
       </motion.div>
     </motion.div>
   );
