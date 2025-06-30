@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ApperIcon from '@/components/ApperIcon';
+import { AuthContext } from '../App';
 
 const Sidebar = () => {
   const location = useLocation();
+  const { logout } = useContext(AuthContext);
 
   const navigation = [
     { name: 'Dashboard', href: '/', icon: 'LayoutDashboard' },
@@ -67,8 +69,8 @@ const Sidebar = () => {
         ))}
       </nav>
 
-      {/* Footer */}
-      <div className="p-4 border-t border-surface-600">
+{/* Footer */}
+      <div className="p-4 border-t border-surface-600 space-y-3">
         <div className="flex items-center space-x-3 p-3 bg-surface-600 rounded-lg">
           <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center">
             <ApperIcon name="Activity" className="w-4 h-4 text-white" />
@@ -78,6 +80,14 @@ const Sidebar = () => {
             <p className="text-xs text-green-400">All systems operational</p>
           </div>
         </div>
+        
+        <button
+          onClick={logout}
+          className="w-full flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 text-gray-300 hover:text-white hover:bg-red-600/20 border border-red-600/30"
+        >
+          <ApperIcon name="LogOut" className="w-5 h-5 mr-3" />
+          Logout
+        </button>
       </div>
     </div>
   );

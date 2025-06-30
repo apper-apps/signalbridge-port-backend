@@ -32,8 +32,8 @@ const Signals = () => {
   };
 
   const exportSignals = () => {
-    const csvContent = signals.map(signal => 
-      `${signal.timestamp},${signal.symbol},${signal.action},${signal.price},${signal.stopLoss},${signal.takeProfit},${signal.lotSize},${signal.status},${signal.accountNumber}`
+const csvContent = signals.map(signal => 
+      `${signal.timestamp},${signal.symbol},${signal.action},${signal.price},${signal.stop_loss},${signal.take_profit},${signal.lot_size},${signal.status},${signal.account_number}`
     ).join('\n');
     
     const blob = new Blob([`Timestamp,Symbol,Action,Price,Stop Loss,Take Profit,Lot Size,Status,Account\n${csvContent}`], 
@@ -48,8 +48,8 @@ const Signals = () => {
   };
 
   const filteredSignals = signals.filter(signal => {
-    const matchesSearch = signal.symbol.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         signal.accountNumber.includes(searchTerm);
+const matchesSearch = signal.symbol.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         signal.account_number.includes(searchTerm);
     const matchesStatus = statusFilter === 'all' || signal.status.toLowerCase() === statusFilter;
     return matchesSearch && matchesStatus;
   });
@@ -191,20 +191,20 @@ const Signals = () => {
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-white font-mono">
                       {signal.price.toFixed(5)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-red-400 font-mono">
-                      {signal.stopLoss.toFixed(5)}
+<td className="px-6 py-4 whitespace-nowrap text-sm text-red-400 font-mono">
+                      {signal.stop_loss.toFixed(5)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-green-400 font-mono">
-                      {signal.takeProfit.toFixed(5)}
+<td className="px-6 py-4 whitespace-nowrap text-sm text-green-400 font-mono">
+                      {signal.take_profit.toFixed(5)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-white font-mono">
-                      {signal.lotSize}
+<td className="px-6 py-4 whitespace-nowrap text-sm text-white font-mono">
+                      {signal.lot_size}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <StatusBadge status={signal.status} />
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300 font-mono">
-                      {signal.accountNumber}
+<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300 font-mono">
+                      {signal.account_number}
                     </td>
                   </motion.tr>
                 ))}

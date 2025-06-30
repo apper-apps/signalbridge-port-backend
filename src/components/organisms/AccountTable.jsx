@@ -30,10 +30,10 @@ const AccountTable = () => {
 
   const generateApiKey = async (accountNumber) => {
     try {
-      const newKey = await accountService.generateApiKey(accountNumber);
+const newKey = await accountService.generateApiKey(accountNumber);
       setAccounts(accounts.map(account => 
-        account.accountNumber === accountNumber 
-          ? { ...account, apiKey: newKey }
+        account.account_number === accountNumber 
+          ? { ...account, api_key: newKey }
           : account
       ));
       toast.success('API key generated successfully');
@@ -111,17 +111,17 @@ const AccountTable = () => {
                 className="hover:bg-surface-600 transition-colors duration-200"
               >
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <span className="text-sm font-medium text-white font-mono">
-                    {account.accountNumber}
+<span className="text-sm font-medium text-white font-mono">
+                    {account.account_number}
                   </span>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="flex items-center space-x-2">
-                    <span className="text-sm text-gray-300 font-mono">
-                      {account.apiKey.substring(0, 8)}...
+<span className="text-sm text-gray-300 font-mono">
+                      {account.api_key.substring(0, 8)}...
                     </span>
                     <button
-                      onClick={() => copyApiKey(account.apiKey)}
+onClick={() => copyApiKey(account.api_key)}
                       className="text-gray-400 hover:text-white transition-colors"
                     >
                       <ApperIcon name="Copy" className="w-4 h-4" />
@@ -129,18 +129,18 @@ const AccountTable = () => {
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <StatusBadge status={account.subscriptionStatus} />
+<StatusBadge status={account.subscription_status} />
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
-                  {new Date(account.expiryDate).toLocaleDateString()}
+<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+                  {new Date(account.expiry_date).toLocaleDateString()}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <span className="text-sm font-medium text-accent-400">
-                    {account.signalsReceived.toLocaleString()}
+<span className="text-sm font-medium text-accent-400">
+                    {account.signals_received.toLocaleString()}
                   </span>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
-                  {new Date(account.lastActive).toLocaleString()}
+<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+                  {new Date(account.last_active).toLocaleString()}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                   <div className="flex items-center space-x-2">
@@ -148,7 +148,7 @@ const AccountTable = () => {
                       variant="ghost"
                       size="sm"
                       icon="RefreshCw"
-                      onClick={() => generateApiKey(account.accountNumber)}
+onClick={() => generateApiKey(account.account_number)}
                     >
                       Regenerate Key
                     </Button>

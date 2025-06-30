@@ -16,18 +16,16 @@ const ApiConfig = () => {
   const [saving, setSaving] = useState(false);
   const [testing, setTesting] = useState(false);
 
-  const [formData, setFormData] = useState({
+const [formData, setFormData] = useState({
     endpoint: '',
-    authMethod: 'api-key',
-    webhookUrl: '',
-    mt5Parameters: {
-      serverAddress: '',
-      login: '',
-      password: '',
-      maxLotSize: 1.0,
-      allowedSymbols: '',
-      riskLevel: 'medium'
-    }
+    auth_method: 'api-key',
+    webhook_url: '',
+    mt5_parameters_server_address: '',
+    mt5_parameters_login: '',
+    mt5_parameters_password: '',
+    mt5_parameters_max_lot_size: 1.0,
+    mt5_parameters_allowed_symbols: '',
+    mt5_parameters_risk_level: 'medium'
   });
 
   const loadConfig = async () => {
@@ -74,22 +72,11 @@ const ApiConfig = () => {
     }
   };
 
-  const handleInputChange = (field, value) => {
-    if (field.includes('.')) {
-      const [parent, child] = field.split('.');
-      setFormData(prev => ({
-        ...prev,
-        [parent]: {
-          ...prev[parent],
-          [child]: value
-        }
-      }));
-    } else {
-      setFormData(prev => ({
-        ...prev,
-        [field]: value
-      }));
-    }
+const handleInputChange = (field, value) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
   };
 
   useEffect(() => {
@@ -118,7 +105,7 @@ const ApiConfig = () => {
             </p>
           </div>
           <div className="flex items-center space-x-3">
-            <StatusBadge status={config?.isActive ? 'active' : 'inactive'} />
+<StatusBadge status={config?.is_active ? 'active' : 'inactive'} />
             <Button
               variant="secondary"
               icon="TestTube"
@@ -159,9 +146,9 @@ const ApiConfig = () => {
               <label className="block text-sm font-medium text-gray-300 mb-2">
                 Authentication Method
               </label>
-              <select
-                value={formData.authMethod}
-                onChange={(e) => handleInputChange('authMethod', e.target.value)}
+<select
+                value={formData.auth_method}
+                onChange={(e) => handleInputChange('auth_method', e.target.value)}
                 className="w-full px-3 py-2 bg-surface-600 border border-surface-500 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
               >
                 <option value="api-key">API Key</option>
@@ -171,9 +158,9 @@ const ApiConfig = () => {
             </div>
 
             <Input
-              label="Webhook URL"
-              value={formData.webhookUrl}
-              onChange={(e) => handleInputChange('webhookUrl', e.target.value)}
+value={formData.webhook_url}
+              onChange={(e) => handleInputChange('webhook_url', e.target.value)}
+              placeholder="https://your-domain.com/webhook/signals"
               placeholder="https://your-domain.com/webhook/signals"
             />
           </div>
@@ -188,24 +175,24 @@ const ApiConfig = () => {
 
           <div className="space-y-4">
             <Input
-              label="Server Address"
-              value={formData.mt5Parameters.serverAddress}
-              onChange={(e) => handleInputChange('mt5Parameters.serverAddress', e.target.value)}
+value={formData.mt5_parameters_server_address}
+              onChange={(e) => handleInputChange('mt5_parameters_server_address', e.target.value)}
+              placeholder="broker-server.com:443"
               placeholder="broker-server.com:443"
             />
 
             <div className="grid grid-cols-2 gap-4">
               <Input
-                label="Login"
-                value={formData.mt5Parameters.login}
-                onChange={(e) => handleInputChange('mt5Parameters.login', e.target.value)}
+value={formData.mt5_parameters_login}
+                onChange={(e) => handleInputChange('mt5_parameters_login', e.target.value)}
+                placeholder="12345678"
                 placeholder="12345678"
               />
               <Input
                 label="Password"
-                type="password"
-                value={formData.mt5Parameters.password}
-                onChange={(e) => handleInputChange('mt5Parameters.password', e.target.value)}
+value={formData.mt5_parameters_password}
+                onChange={(e) => handleInputChange('mt5_parameters_password', e.target.value)}
+                placeholder="••••••••"
                 placeholder="••••••••"
               />
             </div>
@@ -213,16 +200,16 @@ const ApiConfig = () => {
             <Input
               label="Max Lot Size"
               type="number"
-              step="0.01"
-              value={formData.mt5Parameters.maxLotSize}
-              onChange={(e) => handleInputChange('mt5Parameters.maxLotSize', parseFloat(e.target.value))}
+value={formData.mt5_parameters_max_lot_size}
+              onChange={(e) => handleInputChange('mt5_parameters_max_lot_size', parseFloat(e.target.value))}
+              placeholder="1.00"
               placeholder="1.00"
             />
 
             <Input
-              label="Allowed Symbols (comma-separated)"
-              value={formData.mt5Parameters.allowedSymbols}
-              onChange={(e) => handleInputChange('mt5Parameters.allowedSymbols', e.target.value)}
+value={formData.mt5_parameters_allowed_symbols}
+              onChange={(e) => handleInputChange('mt5_parameters_allowed_symbols', e.target.value)}
+              placeholder="EURUSD, GBPUSD, USDJPY"
               placeholder="EURUSD, GBPUSD, USDJPY"
             />
 
@@ -230,9 +217,9 @@ const ApiConfig = () => {
               <label className="block text-sm font-medium text-gray-300 mb-2">
                 Risk Level
               </label>
-              <select
-                value={formData.mt5Parameters.riskLevel}
-                onChange={(e) => handleInputChange('mt5Parameters.riskLevel', e.target.value)}
+<select
+                value={formData.mt5_parameters_risk_level}
+                onChange={(e) => handleInputChange('mt5_parameters_risk_level', e.target.value)}
                 className="w-full px-3 py-2 bg-surface-600 border border-surface-500 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
               >
                 <option value="low">Low Risk</option>

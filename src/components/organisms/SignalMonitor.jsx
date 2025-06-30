@@ -124,19 +124,19 @@ const SignalMonitor = () => {
                   {signal.price.toFixed(5)}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300 font-mono">
-                  <div className="text-xs">
-                    <div>SL: {signal.stopLoss.toFixed(5)}</div>
-                    <div>TP: {signal.takeProfit.toFixed(5)}</div>
+<div className="text-xs">
+                    <div>SL: {signal.stop_loss.toFixed(5)}</div>
+                    <div>TP: {signal.take_profit.toFixed(5)}</div>
                   </div>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-white font-mono">
-                  {signal.lotSize}
+<td className="px-6 py-4 whitespace-nowrap text-sm text-white font-mono">
+                  {signal.lot_size}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <StatusBadge status={signal.status} />
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300 font-mono">
-                  {signal.accountNumber}
+<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300 font-mono">
+                  {signal.account_number}
                 </td>
               </motion.tr>
             ))}
