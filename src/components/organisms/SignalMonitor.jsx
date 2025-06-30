@@ -9,25 +9,25 @@ import Empty from '@/components/ui/Empty';
 import { signalService } from '@/services/api/signalService';
 
 const SignalMonitor = () => {
-  const [signals, setSignals] = useState([]);
+const [signals, setSignals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  const loadSignals = async () => {
+const loadSignals = async () => {
     try {
       setLoading(true);
       setError('');
       const data = await signalService.getRecentSignals();
-      setSignals(data);
+      setSignals(Array.isArray(data) ? data : []);
     } catch (err) {
-      setError(err.message);
+      setError(err?.message || 'Failed to load signals');
       toast.error('Failed to load signals');
     } finally {
       setLoading(false);
     }
   };
 
-  useEffect(() => {
+useEffect(() => {
     loadSignals();
     
     // Simulate real-time updates
@@ -93,53 +93,78 @@ const SignalMonitor = () => {
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-surface-600">
-            {signals.map((signal) => (
-              <motion.tr
-                key={signal.Id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="hover:bg-surface-600 transition-colors duration-200"
-              >
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300 font-mono">
-                  {new Date(signal.timestamp).toLocaleTimeString()}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <span className="text-sm font-medium text-white">{signal.symbol}</span>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                    signal.action.toLowerCase() === 'buy' 
-                      ? 'bg-green-500/20 text-green-400 border border-green-500/30'
-                      : 'bg-red-500/20 text-red-400 border border-red-500/30'
-                  }`}>
-                    <ApperIcon 
-                      name={signal.action.toLowerCase() === 'buy' ? 'ArrowUp' : 'ArrowDown'} 
-                      className="w-3 h-3 mr-1" 
-                    />
-                    {signal.action}
-                  </span>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-white font-mono">
-                  {signal.price.toFixed(5)}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300 font-mono">
-<div className="text-xs">
-                    <div>SL: {signal.stop_loss.toFixed(5)}</div>
-                    <div>TP: {signal.take_profit.toFixed(5)}</div>
-                  </div>
-                </td>
-<td className="px-6 py-4 whitespace-nowrap text-sm text-white font-mono">
-                  {signal.lot_size}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <StatusBadge status={signal.status} />
-                </td>
-<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300 font-mono">
-                  {signal.account_number}
-                </td>
-              </motion.tr>
-            ))}
+<tbody className="divide-y divide-surface-600">
+            {signals.map((signal) => {
+              if (!signal || !signal.Id) return null;
+              
+              // Safe date formatting
+              const formatTimestamp = () => {
+                try {
+                  const date = new Date(signal.timestamp);
+                  return isNaN(date.getTime()) ? '--:--:--' : date.toLocaleTimeString();
+                } catch {
+                  return '--:--:--';
+                }
+              };
+
+              // Safe action formatting
+              const action = signal.action ? String(signal.action) : '';
+              const actionLower = action.toLowerCase();
+              const isBuy = actionLower === 'buy';
+
+              // Safe number formatting
+              const formatPrice = (value) => {
+                const num = Number(value);
+                return !isNaN(num) ? num.toFixed(5) : '0.00000';
+              };
+
+              return (
+                <motion.tr
+                  key={signal.Id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="hover:bg-surface-600 transition-colors duration-200"
+                >
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300 font-mono">
+                    {formatTimestamp()}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span className="text-sm font-medium text-white">{signal.symbol || 'N/A'}</span>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                      isBuy 
+                        ? 'bg-green-500/20 text-green-400 border border-green-500/30'
+                        : 'bg-red-500/20 text-red-400 border border-red-500/30'
+                    }`}>
+                      <ApperIcon 
+                        name={isBuy ? 'ArrowUp' : 'ArrowDown'} 
+                        className="w-3 h-3 mr-1" 
+                      />
+                      {action || 'N/A'}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-white font-mono">
+                    {formatPrice(signal.price)}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300 font-mono">
+                    <div className="text-xs">
+                      <div>SL: {formatPrice(signal.stop_loss)}</div>
+                      <div>TP: {formatPrice(signal.take_profit)}</div>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-white font-mono">
+                    {signal.lot_size || '0.00'}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <StatusBadge status={signal.status || 'unknown'} />
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300 font-mono">
+                    {signal.account_number || 'N/A'}
+                  </td>
+                </motion.tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
