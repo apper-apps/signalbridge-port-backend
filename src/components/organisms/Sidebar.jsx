@@ -2,12 +2,11 @@ import React, { useContext } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ApperIcon from '@/components/ApperIcon';
-import { AuthContext } from '../App';
+import { AuthContext } from '../../App';
 
 const Sidebar = () => {
   const location = useLocation();
   const { logout } = useContext(AuthContext);
-
   const navigation = [
     { name: 'Dashboard', href: '/', icon: 'LayoutDashboard' },
     { name: 'Signals', href: '/signals', icon: 'TrendingUp' },
